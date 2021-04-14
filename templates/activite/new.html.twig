@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Activite{% endblock %}
+
+{% block body %}
+<center>
+</br></br></br>
+    <h1>Ajouter un nouveau type d'activté</h1>
+    </br></br>
+
+    {{ include('activite/_form.html.twig') }}
+    </br>
+
+    <a href="{{ path('activite_index') }}">retourner en arrière</a>
+    </center>
+{% endblock %}

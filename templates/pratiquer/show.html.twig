@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}+ de détails sur l'activité{% endblock %}
+
+{% block body %}
+<center>
+</br></br></br>
+    <h1>+ de détails sur l'activité</h1>
+</br></br>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pratiquer.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ pratiquer.date ? pratiquer.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>    
+                <th>Activite Id</th>
+            <td>{{ pratiquer.activite}}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ pratiquer.duree ? pratiquer.duree|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ pratiquer.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</br></br>
+    <a href="{{ path('pratiquer_index') }}">retourner en arrière</a>
+    ou
+    <a href="{{ path('pratiquer_edit', {'id': pratiquer.id}) }}">modifier</a>
+</br></br>
+    {{ include('pratiquer/_delete_form.html.twig') }}
+</center>
+{% endblock %}

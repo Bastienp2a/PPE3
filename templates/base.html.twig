@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}TimeTimer!{% endblock %}</title>
+        {% block stylesheets %}
+
+        <link rel="icon" type="image/png" href="https://www.icone-png.com/png/14/14467.png" /> 
+        {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">TimeTimer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav">
+          {% if not app.user %}
+         <li class="nav-item active">
+         <a class="nav-link" href={{path('app_login')}} >Se connecter <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+
+           {% if  app.user %}
+         <li class="nav-item active">
+         <a class="nav-link" href={{path('app_logout')}} >Se déconnecter <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+            
+            <li class="nav-item">
+             <a class="nav-link" href={{path('home_page')}} >Acceuil <span class="sr-only">(current)</span></a>
+            </li>
+
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+            
+           {% if is_granted('ROLE_MEDICAL')%} {# or is_granted('autre role') #}
+            <li class="dropdown">
+           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Administration Medical
+           </a>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <a class="dropdown-item" href={{path('user_new')}}>Ajouter un utilisateur</a>
+           <a class="dropdown-item" href={{path('user_index')}}>Gerer les utilisateur</a>
+           <a class="dropdown-item" href={{path('enfant_index')}}>Afficher tout les enfants</a>
+           </li>
+           {% endif %}
+
+           &nbsp; &nbsp;
+           
+           {% if is_granted('ROLE_PARENTS') %}
+           <li class="dropdown">
+           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Menu Parent
+           </a>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <a class="dropdown-item" href={{path('enfant_new')}}>Ajouter un enfant</a>
+           <a class="dropdown-item" href={{path('enfant_parent')}}>Afficher ses enfants</a>
+           </li>
+           {% endif %}
+
+
+           &nbsp; &nbsp;
+           
+           {% if is_granted('ROLE_EDUCATEUR') %}
+           <li class="dropdown">
+           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Menu Educateur
+           </a>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <a class="dropdown-item" href={{path('enfant_index')}}>Afficher tout les enfants</a>
+           <a class="dropdown-item" href={{path('activite_index')}}>Gérer les types d'activités</a>
+           <a class="dropdown-item" href={{path('pratiquer_new')}}>Enregistrer une nouvelle activité</a>
+           <a class="dropdown-item" href={{path('pratiquer_index')}}>Gérer les activités de chaque enfants</a>
+           </li>
+           {% endif %}
+         
+         </ul>
+        </div>
+        </nav>  
+        
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        {{ encore_entry_script_tags('app') }}
+
+        
+              <script>
+                    $(function() {
+                        // you may need to change this code if you are not using Bootstrap Datepicker
+                        $('.js-datepicker').datepicker({
+                            format: 'MM/dd/yyyy'
+                        });
+                    });
+            </script>
+
+
+
+        {% endblock %}
+
+        
+
+    </body>
+</html>

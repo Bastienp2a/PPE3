@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TimeTimer{% endblock %} 
+
+{% block body %}
+
+<link rel="icon" href="https://i.ibb.co/zFvrFrX/logo-tt.png" />
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font:  1.2em , caption; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+ {% if app.user %}
+ <center>
+   </br>
+        <div class="example-wrapper">
+            Vous êtes connecté en tant que {{ app.user.prenom }} {{ app.user.nom }}, <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+        </div>
+    </br>
+</center>
+ {% endif %}
+ 
+
+
+ {% if not app.user %}
+ <center>
+ </br>
+     <div class="example-wrapper">
+        <div class="mb-3">
+            Vous n'êtes pas connecté, merci de vous identifier ! :  <a href="{{ path('app_login') }}"> Se connecter</a>
+        </div>
+        </br></br></br>
+        <img src="https://i.ibb.co/zFvrFrX/logo-tt.png"
+    width="435" height="400">
+    </br></br></br></br>
+    <h5>Ce site est réservé aux Parents ayant leurs enfants dans un de nos centre "iChildren" en France Metropolitaine, ou bien au personnel médical et éducatif.</h5>
+    <h5>Vous êtes obligé de vous connecter avec vos identifiants (préablement donné par votre médecin) pour accéder aux différents onglets du site, 
+    qui vous permettrons par la suite d'inscrire un ou plusieurs de vos enfants dans notre programme TimeTimer, via lequel par la suite vous pourrez visualer l'activité de chacun de vos enfants. </h5>
+ </br></br>
+</center>
+</div>
+ {% endif %}
+ 
+ 
+
+{% if app.user %}
+<center>
+<div class="example-wrapper">
+    <h1>Bienvenue sur TimeTimer</h1>
+    <h1>{{ app.user.prenom }} {{ app.user.nom }}✅</h1>
+    </br></br></br>
+    <img src="https://i.ibb.co/zFvrFrX/logo-tt.png"
+    width="435" height="400">
+    </br></br></br>
+    <h5>Ce site est réservé aux Parents ayant leurs enfants dans un de nos centre "iChildren" en France Metropolitaine, ou bien au personnel médical et éducatif.</h5>
+    <h5>Vous êtes maintenant connecté, vous pouvez donc explorer l'onglet vous concernant et naviquer comme vous le souhaitez, bonne navigation à voous.</h5>
+    <h5>Pour tout problème technique merci de nous contacter via notre mail ichildren@gmail.com</h5>
+</center>
+{% endif %}
+
+
+   <!-- This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/SIO1/Documents/Symfony/mon_projet/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/SIO1/Documents/Symfony/mon_projet/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
+    </ul> 
+    -->
+</div>
+{% endblock %}

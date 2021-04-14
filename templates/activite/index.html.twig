@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des types d'activité{% endblock %}
+
+{% block body %}
+<center>
+</br></br></br></br>
+    <h1>Liste des types d'activité</h1>
+</br></br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for activite in activites %}
+            <tr>
+                <td>{{ activite.id }}</td>
+                <td>{{ activite.libelle }}</td>
+                <td>
+                    <a href="{{ path('activite_show', {'id': activite.id}) }}">+ de détails</a>
+                        ou
+                    <a href="{{ path('activite_edit', {'id': activite.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</br></br>
+    <a href="{{ path('activite_new') }}">Ajouter un type d'activité</a>
+    </center>
+{% endblock %}

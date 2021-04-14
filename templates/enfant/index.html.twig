@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enfant index{% endblock %}
+
+{% block body %}
+<center>
+{% if is_granted('ROLE_MEDICAL') or is_granted('ROLE_EDUCATEUR') %}
+    <br/><br/><br/>
+    <h1>Affichage de tout les enfants</h1>
+    <br/><br/>
+{% endif %}
+
+{% if is_granted('ROLE_PARENTS') %}
+<br/><br/><br/>
+    <h1>Affichage de vos enfants</h1>
+    <br/><br/>
+{% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date de naissance</th>
+                <th>Pathologie</th>
+                {% if is_granted('ROLE_MEDICAL') or is_granted('ROLE_EDUCATEUR') %}
+                  <th>Parent</th>
+                  {% endif %}
+                <th>Actions</th>
+                 
+            </tr>
+        </thead>
+        <tbody>
+        {% for enfant in enfants %}
+            <tr>
+                <td>{{ enfant.nom }}</td>
+                <td>{{ enfant.prenom }}</td>
+                <td>{{ enfant.datenaiss ? enfant.datenaiss|date('Y-m-d') : '' }}</td>
+                <td>{{ enfant.pathologie }}</td>
+                {% if is_granted('ROLE_MEDICAL') or is_granted('ROLE_EDUCATEUR') %}
+                <td>{{ enfant.parent }}</td>
+                {% endif %}
+                <td>
+                    <a href="{{ path('enfant_show', {'id': enfant.id}) }}">+ de détails</a>
+                    ou
+                    <a href="{{ path('enfant_edit', {'id': enfant.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+ </center>   
+{% endblock %}

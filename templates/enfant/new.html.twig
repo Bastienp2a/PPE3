@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Enfant{% endblock %}
+
+{% block body %}
+<center>
+</br></br></br>
+    <h1>Ajouter un enfant</h1>
+</br></br>
+    {{ include('enfant/_form.html.twig') }}
+</br>
+    <a href="{{ path('home_page') }}">retourner en arrière</a>
+
+
+</center>
+{% endblock %}

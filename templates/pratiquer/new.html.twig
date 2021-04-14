@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enregistrer une nouvelle activité{% endblock %}
+
+
+{% block body %}
+<center>
+</br></br></br>
+    <h1>Enregistrer une nouvelle activité</h1>
+</br></br>
+
+    {{ include('pratiquer/_form.html.twig') }}
+</br>
+    <a href="{{ path('pratiquer_index') }}">retourner en arrière</a>
+</br>
+</center>
+{% endblock %}

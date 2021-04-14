@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %} 
+<div class="app">
+  <ul>
+    {% for element in tableau %}
+      <li>{{ element }}</li><br>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
