@@ -1,6 +1,6 @@
 # PPE3
 
-Voici le code de mon PPE3, mission effectué en cours de ma formation.
+Voici le code de mon PPE3 sous symfony, mission effectuée en cours de ma formation.
 
 Pour se connecter dans les différents rôles voici les différents identifiants :
 
